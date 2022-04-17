@@ -1,5 +1,7 @@
 <template>
-    <Count/>
+    <div>
+      <Count/>
+    </div>
 </template>
 
 <script>
