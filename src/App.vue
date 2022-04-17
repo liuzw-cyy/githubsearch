@@ -1,18 +1,12 @@
 <template>
-      <div id="app">
-        <div class="container">
-          <Search/>
-          <List/>
-        </div>
-    </div>
+    <Count/>
 </template>
 
 <script>
-    import List from './components/List.vue'
-    import Search from './components/Search.vue'
+    import Count from './components/Count.vue'
     export default {
-      name:'App',
-        components:{List, Search}
+      name:'APP',
+      components:{Count}
     }
 </script>
 
