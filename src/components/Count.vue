@@ -1,19 +1,23 @@
 <template>
     <div>
-        <h1>当前的和为：{{$store.state.sum}}</h1>
+        <h1>当前的和为：{{sum}}</h1>
+        <h2>当前求和放大10倍为：{{bigSum}}</h2>
+        <h2>我在{{school}}学习{{subject}}</h2>
+        <h3 style="color:red">Person组件的总人数是：{{personList.length}}</h3>
         <select v-model.number="n">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
-        <button @click="increment">+</button>
-        <button @click="decrement">-</button>
-        <button @click="incrementOdd">当前求和为奇数再加</button>
-        <button @click="incrementWait">等一等再加</button>
+        <button @click="increment(n)">+</button>
+        <button @click="decrement(n)">-</button>
+        <button @click="incrementOdd(n)">当前求和为奇数再加</button>
+        <button @click="incrementWait(n)">等一等再加</button>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
     export default {
         name:'Count',
         data() {
@@ -21,23 +25,15 @@
                 n:1
             }
         },
-        methods: {
-            increment() {
-                this.$store.commit('ADD', this.n)
-            },
-            decrement() {
-                this.$store.commit('SUB', this.n)
-            },
-            incrementOdd() {
-                this.$store.dispatch('addOdd', this.n)
-            },
-            incrementWait() {
-                this.$store.dispatch('addWait', this.n)
-            }
+        computed: {
+            ...mapState('countAbout',['sum', 'school', 'subject']),
+            ...mapState('personAbout', ['personList']),
+            ...mapGetters('countAbout',['bigSum'])
         },
-        mounted() {
-			console.log('Count',this)
-		}
+        methods: {
+            ...mapMutations('countAbout',{increment:'ADD', decrement:'SUB'}),
+            ...mapActions('countAbout',{incrementOdd:'addOdd', incrementWait:'addWait'})
+        }
     }
 </script>
 
