@@ -2,7 +2,7 @@
     <div>
         <h1>人员列表</h1>
         <h2 style="color:red">Count组件求和为：{{sum}}</h2>
-        z<h3>列表中第一个人的名字是：{{firstPersonName}}</h3>
+        <h3>列表中第一个人的名字是：{{firstPersonName}}</h3>
         <input type="text" placeholder="请输入名字" v-model="name">
         <button @click="addPerson">添加</button>
         <button @click="addLiu">添加一个姓刘的人</button>
@@ -26,6 +26,7 @@
         computed:{
             // 第一种写法
             ...mapState('personAbout',['personList', 'sum']),
+            ...mapState('countAbout',['sum']),
             // 第二种写法
             firstPersonName(){
 				return this.$store.getters['personAbout/firstPersonName']
