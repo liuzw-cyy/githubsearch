@@ -6,7 +6,7 @@
         <input type="text" placeholder="请输入名字" v-model="name">
         <button @click="addPerson">添加</button>
         <button @click="addLiu">添加一个姓刘的人</button>
-        <button @click="addPersonServer">添加一个人，名字由服务器生成</button>
+        <button @click="addPersonServer">添加一句话，由服务器生成</button>
         <ul>
             <li v-for=" p in personList" :key="p.id">{{p.name}}</li>
         </ul>
